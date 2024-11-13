@@ -13,7 +13,7 @@ import { convertFileSize, getUsageSummary } from "@/lib/utils";
 const Dashboard = async () => {
   // Parallel requests
   const [files, totalSpace] = await Promise.all([
-    getFiles({ types: [], limit: 10 }),
+    getFiles({ types: [], limit: 8 }),
     getTotalSpaceUsed(),
   ]);
 
@@ -21,10 +21,9 @@ const Dashboard = async () => {
   const usageSummary = getUsageSummary(totalSpace);
 
   return (
-    <div className="dashboard-container">
+    <div className="dashboard-container flex-center h-full">
       <section>
         <Chart used={totalSpace.used} />
-
         {/* Uploaded file type summaries */}
         <ul className="dashboard-summary-list">
           {usageSummary.map((summary) => (
